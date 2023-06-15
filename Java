@@ -1,0 +1,10 @@
+・JavaScriptにおける定数はconstであったが、Javaにおける定数はfinalを使用する。
+（例）
+public class Main{
+  public static void main(String[] args){
+    final double PI = 3.14; //定数として円周率を再現
+    int pie = 5;
+    System.out.println(pie * pie * PI);
+  }
+}
+この場合、pieに再代入しようとして誤ってPIと記述してもfinalを記述して定数宣言したためエラーが起こる。
