@@ -1,3 +1,7 @@
+Javaでプログラムを開発するためには、「コンパイラ」と「インタプリタ」というソフトウェアが必要。「コンパイラ」は、Javaの文法に沿って記述したソースコードをバイトコードに変換する。
+「インタプリタ」は、内部に持っているJVM（Java Virtual Machine）の仕組みを使ってこれを解釈し、マシン語に変換してCPUに送り、CPUは命令を受けて実行する。
+
+
 ・JavaScriptにおける定数はconstであったが、Javaにおける定数はfinalを使用する。
 （例）
 public class Main{
@@ -8,3 +12,20 @@ public class Main{
   }
 }
 この場合、pieに再代入しようとして誤ってPIと記述してもfinalを記述して定数宣言したためエラーが起こる。
+
+
+＜代表的なデータ型＞
+整数
+　1.byte とても小さな整数　（例：byte pencil //所持するペンの数）
+　2.short　小さな整数　（例：short age //年齢）
+　3.int　普通の整数　（例：int salary //給与金額）　←利用頻度高い
+　4.long 大きな整数　（例：long world people //世界の人口）
+小数
+　5.float 少し曖昧でもよい数字　（例：float weight //体重）
+　6.double 普通の小数　（例：double pi //円周率）
+真偽値
+　7.boolean tureかfalse　（例：boolean isError //エラーか否か）
+文字
+　8.char 1つの文字　（例：char initial //イニシャル1文字）
+文字列
+　9.String 文字の並び　（例：String name //名前）　←利用頻度高い
