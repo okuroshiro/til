@@ -59,3 +59,19 @@ int input = new java.util.Scanner(System.in).nextInt();
 System.out.println(〇〇);
 しない
 System.out.print(〇〇);
+
+＜条件分岐＞
+Rubyのときのif elseと似ている書き方。
+（例　
+public class Main {
+  public static void main8String[] args){
+    boolean tenki = true;
+    if (tenki == true){
+      System.out.println("洗濯");
+    } else{
+      System.out.println("掃除");
+    }
+  }
+}
+
+＊endはRubyと違っていらない。
