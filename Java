@@ -39,3 +39,23 @@ public class Main{
 6.引用符で囲まれた文字（例：'三'）　型：char
 7.二重引用符で囲まれた文字列（例："Java"）　型：String
 ※6と7は、一見'A'と"A"は同じように見えるが、引用符の違いによって別のデータ型として扱われるので注意。
+
+＜比較して大きい法の数値を代入＞
+int m = Math.max(①, ②);
+
+＜乱数＞
+int r = new java.util.Random().nextInt(数字);　←この数字は発生させる乱数の上限値（指定値自体は含まない）
+（例　数字に10を指定すると0~9のいずれかが代入される。
+
+＜キーボード入力＞
+①キーボードから1行の文字列の入力を受ける場合
+String s = new java.util.Scanner(System.in).nextLine();
+
+②キーボードから1つの整数の入力を受ける場合
+int input = new java.util.Scanner(System.in).nextInt();
+
+＜改行＞
+する
+System.out.println(〇〇);
+しない
+System.out.print(〇〇);
