@@ -75,3 +75,15 @@ public class Main {
 }
 
 ＊endはRubyと違っていらない。
+
+＜繰り返し処理＞（Rubyではeach）
+（例
+public class Main {
+  public static void main8String[] args){
+    boolean doorClose = true;
+    while (doorClose == true){
+      System.out.println("ノック");
+      System.out.println("1分待つ");
+    }
+  }
+}
