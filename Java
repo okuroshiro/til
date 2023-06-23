@@ -48,10 +48,10 @@ int r = new java.util.Random().nextInt(数字);　←この数字は発生させ
 （例　数字に10を指定すると0~9のいずれかが代入される。
 
 ＜キーボード入力＞（Rubyでいうgets）
-①キーボードから1行の文字列の入力を受ける場合
+①キーボードから1行の文字列の入力を受ける場合（Rubyでいうgets.to_s）
 String s = new java.util.Scanner(System.in).nextLine();
 
-②キーボードから1つの整数の入力を受ける場合
+②キーボードから1つの整数の入力を受ける場合（Rubyでいうgets.to_i）
 int input = new java.util.Scanner(System.in).nextInt();
 
 ＜改行＞
