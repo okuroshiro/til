@@ -133,3 +133,4 @@ switch(fortune){
   case 5:
     System.out.println("凶");
 }
+
