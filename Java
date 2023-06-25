@@ -166,3 +166,27 @@ public class Main {
 田中さん、こんにちは
 中山さん、こんにちは
 呼び出しました
+
+＊複数の引数
+public class Main {
+  public static void main (String[] args){
+   add("山田");
+   add("田中");
+ }
+   public static void add(int x, int y){
+    int ans = x + y;
+    System.out.println(x "+" + y "=" + ans); 
+  }
+}
+
+＊戻り値
+public class Main {
+  public static int add(int x, int y){
+   int ans = x + y;
+  return ans;
+ }
+   public static void main (String[] args){
+   int ans = add(100, 10);
+   System.out.println("100 + 10 =" + ans); 
+ }
+}
