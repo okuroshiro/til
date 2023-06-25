@@ -93,7 +93,7 @@ if (str.equals("太陽")){...となる
 ＜繰り返し処理＞（Rubyではeach）
 （例
 public class Main {
-  public static void main8String[] args){
+  public static void main(String[] args){
     boolean doorClose = true;
     while (doorClose == true){
       System.out.println("ノック");
@@ -138,6 +138,31 @@ switch(fortune){
 ＜メソッドの定義＞
 public class Main{
   public static void hello(){           //helloメソッドの定義
-    System.out.println("こんにちは")    //helloメソッドが呼び出されたときの処理
+    System.out.println("こんにちは");   //helloメソッドが呼び出されたときの処理
   }
 }
+
+呼び出すときは
+hello();
+
+＊引数の例
+（例
+public class Main {
+  public static void main (String[] args){
+   System.out.println("メソッド呼び出し");
+   hello("山田");
+   hello("田中");
+   hello("中山");
+   System.out.println("呼び出しました");
+ }
+   public static void hello(String name){
+    System.out.println(name + "さん、こんにちは"); 
+  }
+}
+
+実行結果
+メソッド呼び出し
+山田さん、こんにちは
+田中さん、こんにちは
+中山さん、こんにちは
+呼び出しました
