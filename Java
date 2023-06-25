@@ -134,3 +134,10 @@ switch(fortune){
     System.out.println("凶");
 }
 
+
+＜メソッドの定義＞
+public class Main{
+  public static void hello(){           //helloメソッドの定義
+    System.out.println("こんにちは")    //helloメソッドが呼び出されたときの処理
+  }
+}
