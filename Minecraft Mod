@@ -1,0 +1,25 @@
+＜環境構築＞
+
+必要なもの
+1.Minecraft1.19.4（Java版）
+    ModはJava版にしか導入できない
+2.IntelliJ IDEA
+    VScodeではないのは、Minecraft Developmentというプラグインがあるため
+3.forge-1.19.4-45.1.0-mdk（C:\mods\happyouに配置）
+    mdk（Mod Development Kit）には、Modを作成するために必要なファイルやツールが含まれている
+    ①プログラミングライブラリ：Mod開発に必要なプログラミングライブラリが含まれており、これによりMinecraftの内部機能にアクセスし独自の変更や機能を追加できる
+    ②サンプルコード：サンプルコードやテンプレートが含まれているので、Modの基本的な構造やファイルの配置方法を理解しやすい
+    ③ビルドツール：Modのコンパイルやビルドに使用するツールも含まれているため、Modのコードをビルドして実行可能なModファイルに変換できる
+
+手順
+1.forge-1.19.4-45.1.0-mdkをインストールし、解凍したフォルダをC:\mods\happyouに配置
+
+2.IntelliJ IDEAをインストールし、「Plugins」メニュー>Marketplaceの順に選択して「japanese language pack」（任意）、「Minecraft Development」を検索、インストールして再起動する
+3.「Projects」メニューから「Open」を選択し、さきほどforgeを解凍したフォルダ（今回はC:\mods\happyou）を選択する
+4.メニューから「ファイル」>「プロジェクト構造」の順に選択し、名前（ここではhappyouにした）、SDKを「temurin-17」、言語レベルを「SDKデフォルト」に設定する
+5.メニューから「ファイル」>「設定」の順に選択し、「ビルド、実行、デプロイ」>「ビルドツール」>「Gradle」を開き「Gradle JVM」を「プロジェクト SDK temurin-17」に変更して「OK」を押す
+6.画面右側のツールウィンドウバーにある「Gradle」(象のマーク) を選択し、Gradleツールウィンドウを開き、Gradleツールウィンドウ左上の同期マークから「すべてのGradleプロジェクトを再ロード」を実行する
+  （画面下側の「Build」からビルドツールウィンドウを開き、「BUILD SUCCESSFUL」と出ていることを確認する）
+7.Gradleツールウィンドウの「Task」>「forgegradle runs」の順番に開き、「genIntellijRuns」をダブルクリックして実行する
+8.もう一度ビルドツールウィンドウで「BUILD SUCCESSFUL」を確認する
+9.画面右上の「ExampleTNT [genIntellijRuns]」などと表示されている実行構成の選択肢に「runClient」があるのでそれに変更して実行ボタンを押し、Minecraftが起動することを確認する
