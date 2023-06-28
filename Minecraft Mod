@@ -44,6 +44,9 @@ public class Happyou {
 }
 
 ＊@Modを入力するとimport net.minecraftforge.fml.common.Mod;が勝手に記述される
-＊public static final String MOD_ID = "happyou";というように
+＊public static final String MOD_ID = "happyou";というようにMODの識別名を静的変数指定しておく
+    ・プログラム内の複数の場所で同じIDを使用する必要がある場合でも、一箇所で変更や管理ができる
+    ・MODのIDがプログラム内で一貫して使用されるため、コードの可読性と保守性が向上する
+    ・でもクラスレベルで共有されるため、MOD内の他のクラスからアクセス可能になります。必要な場合は、アクセス制御を適切に行う必要がある
 
 14.
