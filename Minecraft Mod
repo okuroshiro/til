@@ -49,4 +49,7 @@ public class Happyou {
     ・MODのIDがプログラム内で一貫して使用されるため、コードの可読性と保守性が向上する
     ・でもクラスレベルで共有されるため、MOD内の他のクラスからアクセス可能になります。必要な場合は、アクセス制御を適切に行う必要がある
 
-14.
+14.happyou/src/main/resources/META-INF/mods.tomlを開き、以下を変更する
+    ・modId="examplemod" -> modId="happyou"
+    ・displayName="Example Mod" -> displayName="Happyou"
+    ・dependencies.examplemod -> dependencies.happyou (二箇所)
