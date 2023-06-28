@@ -24,3 +24,10 @@
 7.Gradleツールウィンドウの「Task」>「forgegradle runs」の順番に開き、「genIntellijRuns」をダブルクリックして実行する
 8.もう一度ビルドツールウィンドウで「BUILD SUCCESSFUL」を確認する
 9.画面右上の「ExampleTNT [genIntellijRuns]」などと表示されている実行構成の選択肢に「runClient」があるのでそれに変更して実行ボタンを押し、Minecraftが起動することを確認する
+10.happyou/src/main/java/にあるcom.example.examplemodのExampleModを削除する（残ったらcom.example.examplemodも削除）
+11.happyou/src/main/javaを右クリックし、「新規」の「パッケージ」を選択、ここではパッケージ名を「com.okuro.happyou.main」にしている
+    ＊第１要素には共有ソースであることを意味する「com」を指定
+    　第２要素にはmod作成者である「okuro」を指定
+    　第３要素にはmodの名前となる「happyou」を指定
+      第４要素にはmod内での役割を表す名前を指定。今回の場合、最低限作りたいクラスはデバッグ開始時に最初に実行されるクラスなので、「main」とする
+    　つまり、com.okuroというドメイン名の一部であり、happyouというプロジェクトやアプリケーションの一部である主要な機能を持つクラスや要素を含んでいる
