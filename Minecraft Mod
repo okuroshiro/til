@@ -55,3 +55,10 @@ public class Happyou {
     ・modId="examplemod" -> modId="happyou"（com,okuro.happyou.mainで指定したModId）
     ・displayName="Example Mod" -> displayName="Happyou"
     ・dependencies.examplemod -> dependencies.happyou (二箇所)
+    
+    ＊同じファイルで変更できる点
+    ・version：Modのバージョンを指定できる（例：version="1.0.0）
+    ・logoFile="〇〇.png"：Modのアイコン画像を変更できる。指定した画像はsrc/main/resources直下に配置
+    ・credits：制作者たちのクレジット
+    ・authors：製作者の名前とか
+    ・description：Modの説明文とかメッセージが書ける
