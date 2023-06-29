@@ -26,17 +26,17 @@
 9.画面右上の「happyou [genIntellijRuns]」などと表示されている実行構成の選択肢に「runClient」があるのでそれに変更して実行ボタンを押し、Minecraftが起動することを確認する
 10.changelog.txt、CREDITS.txt、LICENSE.txt、README.txtは不要なので削除する
 11.happyou/src/main/java/にあるcom.example.examplemodのExampleModを削除する（残ったらcom.example.examplemodも削除）
-12.happyou/src/main/javaを右クリックし、「新規」の「パッケージ」を選択、ここではパッケージ名を「com.okuro.happyou.main」にしている
+12.happyou/src/main/javaを右クリックし、「新規」の「パッケージ」を選択、ここではパッケージ名を「com.Okuro.happyou.main」にしている
     ＊第１要素には共有ソースであることを意味する「com」を指定
-    　第２要素にはmod作成者である「okuro」を指定
+    　第２要素にはmod作成者である「Okuro」を指定
     　第３要素にはmodの名前となる「happyou」を指定
       第４要素にはmod内での役割を表す名前を指定。今回の場合、最低限作りたいクラスはデバッグ開始時に最初に実行されるクラスなので、「main」とする
-    　つまり、com.okuroというドメイン名の一部であり、happyouというプロジェクトやアプリケーションの一部である主要な機能を持つクラスや要素を含んでいる
+    　つまり、com.Okuroというドメイン名の一部であり、happyouというプロジェクトやアプリケーションの一部である主要な機能を持つクラスや要素を含んでいる
     ＊パッケージ名は全部小文字
-13.com.okuro.happyou.mainを右クリックし、「新規」の「Javaクラス」からHappyouを作成する
+13.com.Okuro.happyou.mainを右クリックし、「新規」の「Javaクラス」からHappyouを作成する
 ＊クラス名は頭文字を大文字
 ＊Happyou.javaの記述
-package com.okuro.happyou.main;
+package com.Okuro.happyou.main;
 
 import net.minecraftforge.fml.common.Mod;
 
@@ -52,6 +52,6 @@ public class Happyou {
     ・でもクラスレベルで共有されるため、MOD内の他のクラスからアクセス可能になります。必要な場合は、アクセス制御を適切に行う必要がある
 
 14.happyou/src/main/resources/META-INF/mods.tomlを開き、以下を変更する
-    ・modId="examplemod" -> modId="happyou"
+    ・modId="examplemod" -> modId="happyou"（com,okuro.happyou.mainで指定したModId）
     ・displayName="Example Mod" -> displayName="Happyou"
     ・dependencies.examplemod -> dependencies.happyou (二箇所)
