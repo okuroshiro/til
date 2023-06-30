@@ -1,0 +1,12 @@
+src > main > resources > assets > originalmod（mainクラスで設定したmod_id。間違えたら反映されない） > lang >(英語なら)en_us.json(日本語なら)ja_jp.json
+
+＜en_us.json＞
+{
+  "itemGroup.originalmod_tab" : "Original Mod"
+//originalmod_tabはクリエイティブタブで設定したもの
+}
+
+＜ja_jp.json＞
+{
+  "itemGroup.originalmod_tab" : "オリジナル Mod"
+}
