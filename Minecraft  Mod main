@@ -1,0 +1,9 @@
+package com.okuro.OriginalMod.main;
+
+import net.minecraftforge.fml.common.Mod;
+
+@Mod("originalmod")
+public class OriginalMod {
+
+    public static final String MOD_ID = "originalmod";
+}
