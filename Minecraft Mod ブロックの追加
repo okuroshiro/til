@@ -1,0 +1,123 @@
+＜src > main > java > com.okuro.OriginalMod > block > BlockOriginalBlock＞
+package com.okuro.OriginalMod.block;
+
+import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.SoundType;
+import net.minecraft.world.level.material.Material;
+
+public class BlockOriginalBlock extends Block {
+    public BlockOriginalBlock() {
+        super(Properties.of(Material.STONE) //素材ブロック
+                .strength(1.5F,6.0F) //左はブロックの硬さ、右は爆発の耐久力をfloat型で設定
+                .sound(SoundType.AMETHYST) //ブロックを置いたり壊すときにどんな音が鳴るのか
+                .lightLevel(value -> 15)　 //どのくらい光るか
+                .requiresCorrectToolForDrops() //どのツールで壊すか（で設定）
+        );
+
+        this.setRegistryName("original_block"); //このブロックの名前
+    }
+}
+
+＜src > main > java > com.okuro.OriginalMod > regi > OriginalModBlocks＞
+
+package com.okuro.OriginalMod.regi;
+
+import com.okuro.OriginalMod.block.BlockOriginalBlock;
+import com.okuro.OriginalMod.main.OriginalMod;
+import net.minecraft.resources.ResourceLocation;
+import net.minecraft.world.item.BlockItem;
+import net.minecraft.world.item.Item;
+import net.minecraft.world.level.block.Block;
+import net.minecraftforge.event.RegistryEvent;
+import net.minecraftforge.eventbus.api.SubscribeEvent;
+import net.minecraftforge.fml.common.Mod;
+import net.minecraftforge.registries.ObjectHolder;
+
+@ObjectHolder(OriginalMod.MOD_ID)
+public class OriginalModBlocks {
+
+    public static final BlockOriginalBlock ORIGINAL_BLOCK = null;
+
+    @Mod.EventBusSubscriber(modid = OriginalMod.MOD_ID, bus = Mod.EventBusSubscriber.Bus.MOD)
+    public static class Register{
+
+        @SubscribeEvent
+        public static void registerBlocks(final RegistryEvent.Register<Block> event){
+            final Block[] blocks = {
+                    new BlockOriginalBlock()
+            };
+            event.getRegistry().registerAll(blocks);
+        }
+
+        @SubscribeEvent
+        public static void registerBlockItems(final RegistryEvent.Register<Item> event){
+            final BlockItem[] blockItems = {
+                    new BlockItem(ORIGINAL_BLOCK,new Item.Properties().tab(OriginalMod.ORIGINALMOD_TAB))
+            };
+            for (BlockItem item : blockItems){
+                final Block block = item.getBlock();
+                final ResourceLocation registryName = block.getRegistryName();
+                event.getRegistry().register(item.setRegistryName(registryName));
+            }
+        }
+    }
+}
+
+＜src >resouces > assets > originalmod > models > block > original_block＞
+
+{
+  "parent": "minecraft:block/cube_all",
+  "textures": {
+    "all": "originalmod:block/original_block"
+  }
+}
+
+＜src >resouces > assets > originalmod > blockstates > original_block.json＞
+{
+  "variants": {
+    "": {
+      "model": "originalmod:block/original_block"
+    }
+  }
+}
+
+<texturesに作ったpngファイルを追加>
+
+＜src >resouces > data > minecraft > tags > block.json > blocks > minable > pickaxe.json＞
+
+{
+  "replace" : false,
+  "values" : [
+    "originalmod:original_block"
+  ]
+}
+
+＜src >resouces > data > minecraft > tags > block.json > blocks > needs_wood_tool.json ＞
+{
+  "replace" : false,
+  "values" : [
+    "originalmod:original_block"
+  ]
+}
+
+＜src >resouces > data > originalmod > loot_tables > blocks > original_block.json ＞
+{
+  "type": "minecraft:block",
+  "pools": [
+    {
+      "rolls": 1.0,
+      "bonus_rolls": 0.0,
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "name": "originalmod:original_block"
+        }
+      ],
+      "conditions": [
+        {
+          "condition": "minecraft:survives_explosion"
+        }
+      ]
+    }
+  ]
+}
