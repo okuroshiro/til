@@ -2,11 +2,18 @@ src > main > resources > assets > originalmod（mainクラスで設定したmod_
 
 ＜en_us.json＞
 {
-  "itemGroup.originalmod_tab" : "Original Mod"
-//originalmod_tabはクリエイティブタブで設定したもの
+  "itemGroup.originalmod_tab" : "Original Mod",
+
+  "item.originalmod.original_sword" : "original sword",
+
+  "block.originalmod.original_block" : "original_block"
 }
 
 ＜ja_jp.json＞
 {
-  "itemGroup.originalmod_tab" : "オリジナル Mod"
+  "itemGroup.originalmod_tab" : "オリジナル Mod",
+
+  "item.originalmod.original_sword" : "最初の剣",
+
+  "block.originalmod.original_block" : "最初のブロック"
 }
