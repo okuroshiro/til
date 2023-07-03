@@ -63,7 +63,7 @@ public class OriginalModBlocks {
     }
 }
 
-＜src > resouces > assets > originalmod > models > block > original_block＞　//オリジナルブロックのモデルを定義
+＜src > resouces > assets > originalmod > models > block > original_block.json＞　//オリジナルブロックのモデルを定義
 
 {
   "parent": "minecraft:block/cube_all",　　//すべての面が同じテクスチャで構成される
