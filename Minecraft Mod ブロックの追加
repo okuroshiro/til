@@ -1,4 +1,4 @@
-＜src > main > java > com.okuro.OriginalMod > block > BlockOriginalBlock＞
+＜src > main > java > com.okuro.OriginalMod > block > BlockOriginalBlock＞　//オリジナルブロックのクラスの作成
 package com.okuro.OriginalMod.block;
 
 import net.minecraft.world.level.block.Block;
@@ -18,7 +18,7 @@ public class BlockOriginalBlock extends Block {
     }
 }
 
-＜src > main > java > com.okuro.OriginalMod > regi > OriginalModBlocks＞
+＜src > main > java > com.okuro.OriginalMod > regi > OriginalModBlocks＞　//オリジナルブロックを反映させる
 
 package com.okuro.OriginalMod.regi;
 
@@ -63,16 +63,16 @@ public class OriginalModBlocks {
     }
 }
 
-＜src >resouces > assets > originalmod > models > block > original_block＞
+＜src > resouces > assets > originalmod > models > block > original_block＞　//オリジナルブロックのモデルを定義
 
 {
-  "parent": "minecraft:block/cube_all",
+  "parent": "minecraft:block/cube_all",　　//すべての面が同じテクスチャで構成される
   "textures": {
-    "all": "originalmod:block/original_block"
+    "all": "originalmod:block/original_block"  //テクスチャの相対パス
   }
 }
 
-＜src >resouces > assets > originalmod > blockstates > original_block.json＞
+＜src > resouces > assets > originalmod > blockstates > original_block.json＞　//新しいブロックの状態を定義（今回はデフォルト）
 {
   "variants": {
     "": {
@@ -81,9 +81,9 @@ public class OriginalModBlocks {
   }
 }
 
-<texturesに作ったpngファイルを追加>
+< src > resouces > assets > originalmod >textures > block > original_block.png >  //texturesに作ったpngファイルを追加（pngファイルの名前は必ず登録したRegistryNameと同じにする）
 
-＜src >resouces > data > minecraft > tags > block.json > blocks > minable > pickaxe.json＞
+＜src >resouces > data > minecraft > tags > block.json > blocks > minable > pickaxe.json＞　//オリジナルピッケルでも壊してアイテムドロップできる
 
 {
   "replace" : false,
@@ -92,7 +92,7 @@ public class OriginalModBlocks {
   ]
 }
 
-＜src >resouces > data > minecraft > tags > block.json > blocks > needs_wood_tool.json ＞
+＜src >resouces > data > minecraft > tags > block.json > blocks > needs_wood_tool.json ＞　//木のツルハシ以降のツルハシでアイテムドロップ
 {
   "replace" : false,
   "values" : [
@@ -100,14 +100,14 @@ public class OriginalModBlocks {
   ]
 }
 
-＜src >resouces > data > originalmod > loot_tables > blocks > original_block.json ＞
+＜src >resouces > data > originalmod > loot_tables > blocks > original_block.json ＞　//
 {
-  "type": "minecraft:block",
+  "type": "minecraft:block", //ブロックのドロップアイテムに関連している
   "pools": [
     {
-      "rolls": 1.0,
-      "bonus_rolls": 0.0,
-      "entries": [
+      "rolls": 1.0,  //1個だけドロップする
+      "bonus_rolls": 0.0, //ボーナスドロップは無し
+      "entries": [//"originalmod:original_block"というアイテムがドロップされるように指定
         {
           "type": "minecraft:item",
           "name": "originalmod:original_block"
@@ -115,7 +115,7 @@ public class OriginalModBlocks {
       ],
       "conditions": [
         {
-          "condition": "minecraft:survives_explosion"
+          "condition": "minecraft:survives_explosion"  //爆発してもドロップする
         }
       ]
     }
