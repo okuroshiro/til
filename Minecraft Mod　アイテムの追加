@@ -170,3 +170,67 @@ public class OriginalModItems {
 
 < src > resouces > assets > originalmod > lang >  >  //英語と日本語の名前の設定
 
+
+＊強い剣の追加
+＜src > main > java > com.okuro.OriginalMod > item > ToolOriginalStrongSword＞　//強い剣のクラスの作成
+package com.okuro.OriginalMod.item.tool;
+
+import com.okuro.OriginalMod.main.OriginalMod;
+import net.minecraft.world.item.SwordItem;
+import net.minecraft.world.item.Tier;
+
+public class ToolOriginalStrongSword extends SwordItem {
+    public ToolOriginalStrongSword() {
+        super(OriginalModTiers.ORIGINAL, 5, -2.4F, new Properties(). tab(OriginalMod.ORIGINALMOD_TAB).fireResistant()); 
+            // super(OriginalModTiers.ORIGINAL, 攻撃力, 攻撃スピード, new Properties(). tab(OriginalMod.ORIGINALMOD_TAB).耐火());
+        this.setRegistryName("original_strong_sword");
+    }
+}
+
+＜src > main > java > com.okuro.OriginalMod > regi > OriginalModItems＞  //オリジナルアイテム、オリジナルツールをアイテムクラスに追加
+package com.okuro.OriginalMod.regi;
+
+import com.okuro.OriginalMod.item.ItemOrigianlSword;
+import com.okuro.OriginalMod.item.tool.ToolOriginalPickaxe;
+import com.okuro.OriginalMod.item.tool.ToolOriginalStrongSword;
+import com.okuro.OriginalMod.main.OriginalMod;
+import net.minecraft.world.item.Item;
+import net.minecraftforge.event.RegistryEvent;
+import net.minecraftforge.eventbus.api.SubscribeEvent;
+import net.minecraftforge.fml.common.Mod;
+import net.minecraftforge.registries.ObjectHolder;
+
+@ObjectHolder(OriginalMod.MOD_ID)
+public class OriginalModItems {
+
+    public static final ItemOrigianlSword ORIGIANL_SWORD = new ItemOrigianlSword();
+    public static final ToolOriginalPickaxe ORIGINAL_PICKAXE = new ToolOriginalPickaxe();
+    public static final ToolOriginalStrongSword ORIGINAL_STRONG_SWORD = new ToolOriginalStrongSword();　　//ここに追加
+
+    @Mod.EventBusSubscriber(modid = OriginalMod.MOD_ID, bus = Mod.EventBusSubscriber.Bus.MOD)
+    public static class Register{
+
+        @SubscribeEvent
+        public static void registerItems(final RegistryEvent.Register<Item> event){
+
+            final Item[] items = {
+                    ORIGIANL_SWORD,
+                    ORIGINAL_PICKAXE,
+                    ORIGINAL_STRONG_SWORD　　//ここに追加
+            };
+            event.getRegistry().registerAll(items);
+        }
+    }
+}
+
+＜src > resouces > assets > originalmod > models > item> original_pickaxe.json＞　//強い剣のモデルを定義
+{
+  "parent": "minecraft:item/handheld",
+  "textures": {
+    "layer0": "originalmod:item/original_strong_sword"
+  }
+}
+
+< src > resouces > assets > originalmod >textures > item > original_strong_sword.png >  //texturesに作ったpngファイルを追加（pngファイルの名前は必ず登録したRegistryNameと同じにする） 
+
+< src > resouces > assets > originalmod > lang >  >  //英語と日本語の名前の設定
