@@ -185,6 +185,24 @@ public class ToolOriginalSword extends SwordItem {
             // super(OriginalModTiers.ORIGINAL, 攻撃力, 攻撃スピード, new Properties(). tab(OriginalMod.ORIGINALMOD_TAB).耐火());
         this.setRegistryName("original_sword");
     }
+ @Override
+    public InteractionResultHolder<ItemStack> use(Level world, Player player, InteractionHand hand) {
+        ItemStack stack = player.getItemInHand(hand);
+
+        if (player.experienceLevel > 3){
+            player.giveExperienceLevels(-3);
+            stack.setDamageValue(stack.getDamageValue() - 10);
+            player.addEffect(new MobEffectInstance(MobEffects.DAMAGE_BOOST, 20*60*3, 9, false, false));
+        }
+        return InteractionResultHolder.success(stack);
+    }
+
+    @Override
+    public boolean hurtEnemy(ItemStack stack, LivingEntity enemy, LivingEntity attacker) {
+        Vec3 vec3 = attacker.getLookAngle();
+        enemy.setDeltaMovement(vec3.x * 1.5, 1.5, vec3.z * 1.5);
+        return super.hurtEnemy(stack, enemy, attacker);
+    }
 }
 
 ＜src > main > java > com.okuro.OriginalMod > regi > OriginalModItems＞  //オリジナルアイテム、オリジナルツールをアイテムクラスに追加
