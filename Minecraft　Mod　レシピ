@@ -1,0 +1,21 @@
+＜src > resouces > date > originalmod > recipes ＞
+このファイルにjsonファイルを入れていく。
+
+（例　original_sword.json
+{
+    "type": "minecraft:crafting_shapeless",
+    "ingredients": [
+        {
+            "item": "minecraft:pink_dye"
+        },
+        {
+            "item": "originalmod:original_start"
+        }
+    ],
+    "result": {
+        "item": "originalmod:original_sword",
+        "count": 1
+    }
+}
+
+これはピンクの染料とoriginal_start（日本語で”最初の剣”と書いてある）の二つを組み合わせたらoriginal_swordになる（アイテムの配置は指定なし）
