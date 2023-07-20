@@ -291,3 +291,43 @@ public class OriginalModItems {
     }
 }
 
+
+＊＊＊見た目設定＊＊＊
+＜src > resouces > assets > originalmod > models > item> original_pickaxe.json＞　//オリジナルピッケルのモデルを定義
+{
+  "parent": "minecraft:item/handheld",
+  "textures": {
+    "layer0": "originalmod:item/original_pickaxe"
+  }
+}
+//////ツールは同じように記述////////
+
+< src > resouces > assets > originalmod >textures > item > original_sword.png >  //texturesに作ったpngファイルを追加（pngファイルの名前は必ず登録したRegistryNameと同じにする） 
+
+< src > resouces > assets > originalmod > lang >  >  //英語と日本語の名前の設定
+
+＊＊＊レシピ＊＊＊
+＜src > resouces > date > originalmod > recipes ＞
+このフォルダにjsonファイルを入れていく。
+（例　＜src > resouces > date > originalmod > recipes  > fire_sword ＞ //火の付く剣
+
+{
+    "type": "minecraft:crafting_shaped",
+    "pattern": [
+        " # ",  //上段のどこの位置か
+        " # ",  //中段のどこの位置か
+        " / "   //下段のどこの位置か
+    ],
+    "key": {
+        "#": {
+            "item": "minecraft:redstone"   // "#"に何を配置するか
+        },
+        "/": {
+            "item": "originalmod:original_start"   // "/"に何を配置するか
+        }
+    },
+    "result": {
+        "item": "originalmod:fire_sword",   //配置した結果
+        "count": 1
+    }
+}
