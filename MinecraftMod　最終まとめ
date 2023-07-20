@@ -1,1 +1,293 @@
+＊＊＊メイン＊＊＊
+＜src > main > java > com.okuro.OriginalMod > main > OriginalMod ＞　
+package com.okuro.OriginalMod.main;
+
+import net.minecraft.world.item.CreativeModeTab;
+import net.minecraftforge.fml.common.Mod;
+
+@Mod("originalmod")
+public class OriginalMod {
+
+    public static final String MOD_ID = "originalmod";
+
+    //クリエイティブモードのインベントリ画面に表示されるタブのクラス
+    public static final CreativeModeTab ORIGINALMOD_TAB = new OriginalModTab();
+}
+
+＊＊＊クリエイティブタブ＊＊＊
+＜src > main > java > com.okuro.OriginalMod > main > OriginalModTab ＞
+package com.okuro.OriginalMod.main;
+
+import net.minecraft.world.item.CreativeModeTab;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.Items;
+
+public class OriginalModTab extends CreativeModeTab{
+    public OriginalModTab() {
+        super("originalmod_tab");
+    }
+
+    //オリジナルのクリエイティブタブのアイコンは「アメジストの欠片」
+    @Override
+    public ItemStack makeIcon() {
+        return new ItemStack(Items.AMETHYST_SHARD);
+    }
+}
+
+＊＊＊アイテム＊＊＊
+＜src > main > java > com.okuro.OriginalMod > item > tool > OriginalTiers＞  //Tierの設定
+package com.okuro.OriginalMod.item.tool;
+
+import com.okuro.OriginalMod.main.OriginalMod;
+import com.okuro.OriginalMod.regi.OriginalModItems;
+import com.okuro.OriginalMod.regi.OriginalModTags;
+import net.minecraft.resources.ResourceLocation;
+import net.minecraft.world.item.Tiers;
+import net.minecraft.world.item.crafting.Ingredient;
+import net.minecraftforge.common.ForgeTier;
+import net.minecraftforge.common.TierSortingRegistry;
+
+import java.util.List;
+
+public class OriginalModTiers {
+
+    public static final ForgeTier ORIGINAL = new ForgeTier(2,3000, 10F, 6F,10, OriginalModTags.Blocks.NEEDS_ORIGINAL_TOOL,()->Ingredient.of(OriginalModItems.ORIGIANL_STSRT));
+
+    static {
+        TierSortingRegistry.registerTier(ORIGINAL, new ResourceLocation(OriginalMod.MOD_ID,"original"), List.of(TierSortingRegistry.getName(Tiers.WOOD)),List.of());
+    }
+}
+
+＜src > main > java > com.okuro.OriginalMod > item > ItemOriginalStart＞ //最初の剣
+package com.okuro.OriginalMod.item;
+
+import com.okuro.OriginalMod.main.OriginalMod;
+import net.minecraft.world.item.Item;
+
+public class ItemOrigialStart extends Item{
+    public ItemOrigialStart() {
+        super(new Properties().tab(OriginalMod.ORIGINALMOD_TAB));
+        this.setRegistryName("original_start");
+    }
+}
+
+＜src > main > java > com.okuro.OriginalMod > item > ToolOriginalPickaxe＞ //自動回復ピッケル
+package com.okuro.OriginalMod.item.tool;
+
+import com.okuro.OriginalMod.main.OriginalMod;
+import net.minecraft.world.entity.Entity;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.PickaxeItem;
+import net.minecraft.world.item.Tiers;
+import net.minecraft.world.level.Level;
+
+//PickaxeItemというクラスを継承しており、ピッケルとしての基本的な機能を持っている
+public class ToolOriginalPickaxe extends PickaxeItem {
+
+    //ネザライトのTiers：素材レベルが4、素材の耐久値が2031、採掘速度が9.0F、攻撃力4.0F、エンチャントレベルが15
+    //Tiers、攻撃力の補正値、攻撃速度の補正値、クリエイティブタブの場所
+    public ToolOriginalPickaxe() {
+        super(Tiers.NETHERITE,1,-2.8F,new Properties().tab(OriginalMod.ORIGINALMOD_TAB));
+        this.setRegistryName("original_pickaxe");
+    }
+
+    //5秒ごとにピッケルの耐久値を200自動回復
+    @Override
+    public void inventoryTick(ItemStack stack, Level world, Entity entity, int itemSlot, boolean isSelected) {
+        if (entity.tickCount % 100 == 0){
+            stack.setDamageValue(stack.getDamageValue()-200);
+        }
+    }
+}
+
+＜src > main > java > com.okuro.OriginalMod > item > ToolOriginalAxe＞ //強い斧
+package com.okuro.OriginalMod.item.tool;
+
+import com.okuro.OriginalMod.main.OriginalMod;
+import net.minecraft.world.item.AxeItem;
+import net.minecraft.world.item.Tiers;
+
+public class ToolOriginalAxe extends AxeItem {
+
+    //ネザライトのTiers：素材レベルが4、素材の耐久値が2031、採掘速度が9.0F、攻撃力4.0F、エンチャントレベルが15
+    //Tiers、攻撃力の補正値、攻撃速度の補正値、クリエイティブタブの場所
+    public ToolOriginalAxe() {
+        super(Tiers.NETHERITE,20, -3.0F,new Properties().tab(OriginalMod.ORIGINALMOD_TAB));
+        this.setRegistryName("original_axe");
+    }
+}
+
+＜src > main > java > com.okuro.OriginalMod > item > ToolFireSword＞ //火が付く剣
+package com.okuro.OriginalMod.item.tool;
+
+import com.okuro.OriginalMod.main.OriginalMod;
+import net.minecraft.world.InteractionHand;
+import net.minecraft.world.InteractionResultHolder;
+import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.SwordItem;
+import net.minecraft.world.item.Tiers;
+import net.minecraft.world.level.Level;
+
+
+public class ToolFireSword extends SwordItem {
+    public ToolFireSword() {
+        //ネザライトのTiers：素材レベルが4、素材の耐久値が2031、採掘速度が9.0F、攻撃力4.0F、エンチャントレベルが15
+        //Tiers、攻撃力の補正値、攻撃速度の補正値、クリエイティブタブの場所
+        super(Tiers.NETHERITE,3,-2.4F, new Properties().tab(OriginalMod.ORIGINALMOD_TAB));
+        //剣の登録名(アイテムを識別するために使われる)
+        this.setRegistryName("fire_sword");
+    }
+
+    @Override//右クリックをすると、経験値を３ポイント消費でoriginal_swordの耐久値を10回復する
+    public InteractionResultHolder<ItemStack> use(Level world, Player player, InteractionHand hand) {
+        ItemStack stack = player.getItemInHand(hand);
+
+        //剣の耐久値が最大値に達していないかどうかをチェック
+        if (stack.getDamageValue() > 0) {
+            //経験値が3ポイント以上あるかどうかをチェック
+            if (player.experienceLevel > 3){
+                player.giveExperienceLevels(-3);
+                //剣の耐久値を10回復するが、最大値を超えないようにする
+                stack.setDamageValue(Math.max(stack.getDamageValue() - 10, 0));
+            }
+        }
+        return InteractionResultHolder.success(stack);
+    }
+
+    @Override//敵を攻撃したときに呼び出される
+    public boolean hurtEnemy(ItemStack stack, LivingEntity enemy, LivingEntity attacker) {
+        // 攻撃した相手に火をつける
+        enemy.setSecondsOnFire(5);
+        return super.hurtEnemy(stack, enemy, attacker);
+    }
+
+}
+
+＜src > main > java > com.okuro.OriginalMod > item > ToolFlySword＞ //吹き飛ぶ剣
+package com.okuro.OriginalMod.item.tool;
+
+import com.okuro.OriginalMod.main.OriginalMod;
+import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.SwordItem;
+import net.minecraft.world.item.Tiers;
+import net.minecraft.world.phys.Vec3;
+
+
+
+public class ToolFlySword extends SwordItem {
+
+    //ネザライトのTiers：素材レベルが4、素材の耐久値が2031、採掘速度が9.0F、攻撃力4.0F、エンチャントレベルが15
+    //Tiers、攻撃力の補正値、攻撃速度の補正値、クリエイティブタブの場所
+    public ToolFlySword() {
+        super(Tiers.NETHERITE,3, -2.4F, new Properties().tab(OriginalMod.ORIGINALMOD_TAB));
+        this.setRegistryName("fly_sword");
+    }
+
+    //相手を攻撃したら向いている方向に1.5倍の速度で飛んでいく
+    @Override
+    public boolean hurtEnemy(ItemStack stack, LivingEntity enemy, LivingEntity attacker) {
+        Vec3 vec3 = attacker.getLookAngle();
+        enemy.setDeltaMovement(vec3.x * 1.5, 1.5, vec3.z * 1.5);
+
+        return super.hurtEnemy(stack, enemy, attacker);
+    }
+}
+
+
+＜src > main > java > com.okuro.OriginalMod > item > ToolLightSword＞ //雷の剣
+package com.okuro.OriginalMod.item.tool;
+
+import com.okuro.OriginalMod.entity.NonFireLB;
+import com.okuro.OriginalMod.main.OriginalMod;
+import net.minecraft.core.BlockPos;
+import net.minecraft.server.level.ServerPlayer;
+import net.minecraft.world.entity.LightningBolt;
+import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.SwordItem;
+import net.minecraft.world.item.Tiers;
+import net.minecraft.world.item.context.UseOnContext;
+import net.minecraft.world.level.Level;
+import net.minecraft.world.phys.Vec3;
+
+import java.util.Timer;
+import java.util.TimerTask;
+
+public class ToolLightSword extends SwordItem {
+    //ネザライトのTiers：素材レベルが4、素材の耐久値が2031、採掘速度が9.0F、攻撃力4.0F、エンチャントレベルが15
+    //Tiers、攻撃力の補正値、攻撃速度の補正値、クリエイティブタブの場所
+    public ToolLightSword() {
+        super(Tiers.NETHERITE,3, -2.4F, new Properties().tab(OriginalMod.ORIGINALMOD_TAB));
+        this.setRegistryName("light_sword");
+    }
+
+    //相手に攻撃すると1秒後に雷が相手にあたる
+    @Override
+    public boolean hurtEnemy(ItemStack stack, LivingEntity enemy, LivingEntity attacker) {
+        Player player = (Player)attacker;
+        UseOnContext context = new UseOnContext(player, player.getUsedItemHand(), null);
+        Level world = context.getLevel();
+        Timer timer = new Timer();
+        timer.schedule(new TimerTask() {
+            @Override
+            public void run() {
+                BlockPos pos = enemy.blockPosition();  //敵がいるブロックを指定
+                LightningBolt nonFire = new NonFireLB(world);  //
+                nonFire.moveTo(Vec3.atBottomCenterOf(pos));
+                nonFire.setCause(player instanceof ServerPlayer ? (ServerPlayer) player : null); //
+                world.addFreshEntity(nonFire);
+            }
+        }, 1000);
+
+        return super.hurtEnemy(stack, enemy, attacker);
+    }
+}
+
+＜src > main > java > com.okuro.OriginalMod > regi > OriginalModItems＞  //オリジナルアイテム、オリジナルツールをアイテムクラスに追加
+package com.okuro.OriginalMod.regi;
+
+import com.okuro.OriginalMod.item.ItemOrigialStart;
+import com.okuro.OriginalMod.item.tool.*;
+import com.okuro.OriginalMod.main.OriginalMod;
+import net.minecraft.world.item.Item;
+import net.minecraftforge.event.RegistryEvent;
+import net.minecraftforge.eventbus.api.SubscribeEvent;
+import net.minecraftforge.fml.common.Mod;
+import net.minecraftforge.registries.ObjectHolder;
+
+@ObjectHolder(OriginalMod.MOD_ID)
+//アイテムを登録するクラス
+public class OriginalModItems {
+
+    public static final ItemOrigialStart ORIGINAL_START = new ItemOrigialStart();
+    public static final ToolOriginalPickaxe ORIGINAL_PICKAXE = new ToolOriginalPickaxe();
+    public static final ToolOriginalAxe ORIGINAL_AXE = new ToolOriginalAxe();
+    public static final ToolFireSword FIRE_SWORD = new ToolFireSword();
+    public static final ToolLightSword LIGHT_SWORD = new ToolLightSword();
+    public static final ToolFlySword FLY_SWORD = new ToolFlySword();
+
+
+    //OriginalModのMOD_IDという文字列で識別される(@Mod.EventBusSubscriberはForgeの機能で、MODの初期化や登録などのイベントを処理するため)
+    @Mod.EventBusSubscriber(modid = OriginalMod.MOD_ID, bus = Mod.EventBusSubscriber.Bus.MOD)
+    public static class Register{
+
+        @SubscribeEvent
+        public static void registerItems(final RegistryEvent.Register<Item> event){
+            //itemsという配列にOriginalModで追加されるアイテムのインスタンスを格納
+            final Item[] items = {
+                    ORIGINAL_START,
+                    ORIGINAL_PICKAXE,
+                    ORIGINAL_AXE,
+                    FIRE_SWORD,
+                    LIGHT_SWORD,
+                    FLY_SWORD
+            };
+            event.getRegistry().registerAll(items);
+        }
+    }
+}
 
